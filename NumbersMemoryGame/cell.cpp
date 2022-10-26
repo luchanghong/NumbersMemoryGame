@@ -64,7 +64,7 @@ void NMG_cell_init_welcome() {
 void NMG_cell_bind_number() {
 	int *numbers = NMG_utils_rand_numbers(0, NMG_CFG_CELL_COUNT - 1, g_game_level);
 	for (int i = 0; i < g_game_level; i++){
-		printf("cell[%d] bind number: %d\n", i, *numbers);
+		printf("cell[%d] bind number: %d\n", *numbers, i + 1);
 
 		int bind_number = i + 1;
 		// 把数字转换成对应的字符串

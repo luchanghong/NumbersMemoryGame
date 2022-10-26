@@ -150,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\cell_bg.jpg" />
+    <Image Include="images\pause_icon.png" />
     <Image Include="images\window_bg1.png" />
     <Image Include="images\wrong_face.png" />
   </ItemGroup>

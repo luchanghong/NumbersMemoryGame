@@ -60,7 +60,7 @@ int NMG_utils_is_in_array(int *numbers, int length, int number) {
 }
 
 // 绘图函数，补充透明度 AA
-void drawAlpha(IMAGE *image, int x, int y, int width, int height, int pic_x, int pic_y, double AA = 1) {
+void NMG_utils_draw_alpha_image(IMAGE *image, int x, int y, int width, int height, int pic_x, int pic_y, double AA = 1) {
 	// 变量初始化
 	DWORD *dst = GetImageBuffer();			// GetImageBuffer() 函数，用于获取绘图设备的显存指针， EasyX 自带
 	DWORD *draw = GetImageBuffer();
@@ -95,4 +95,30 @@ void drawAlpha(IMAGE *image, int x, int y, int width, int height, int pic_x, int
 			}
 		}
 	}
+}
+
+void NMG_utils_draw_button(int x1, int y1, int x2, int y2, TCHAR *label, NMG_CFG_BUTTON_TYPE type) {
+	COLORREF colors[] = {
+		RGB(60, 150, 255),		// primary
+		RGB(100, 190, 60),		// success
+		RGB(150, 150, 150),		// info
+		RGB(230, 160, 60),		// warning
+		RGB(250, 100, 100),		// danger
+	};
+
+	setfillstyle(0);
+	setfillcolor(colors[type]);
+	solidroundrect(x1, y1, x2, y2, 20, 20);
+	RECT rect = { x1, y1, x2, y2 };
+
+	LOGFONT font;
+	gettextstyle(&font);						// 获取当前字体设置
+	font.lfWeight = FW_BLACK;                   // 设置字体粗细
+	font.lfQuality = ANTIALIASED_QUALITY;		// 设置正稿质量
+    wcscpy_s(font.lfFaceName, _T("黑体"));		// 设置字体为“黑体”
+	font.lfHeight = (y2 - y1) / 2 > 30 ? 30 : (y2 - y1) / 2;
+	setbkmode(TRANSPARENT);
+	settextcolor(WHITE);
+	settextstyle(&font);
+	drawtext(label, &rect, DT_CENTER | DT_VCENTER | DT_SINGLELINE);
 }

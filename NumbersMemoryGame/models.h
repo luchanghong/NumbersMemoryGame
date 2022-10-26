@@ -9,6 +9,14 @@
 #include <easyx.h>
 
 /*
+* 通用类
+*/
+typedef struct{
+    char fun[20];
+    RECT rect;
+} NMG_MODEL_BUTTON;
+
+/*
 * 排行榜数据模型
 */
 
@@ -29,6 +37,7 @@ typedef struct{
 typedef enum{
     NMG_GSTS_NO_STARTED,		// 未开始
     NMG_GSTS_PLAYING,		    // 进行中
+    NMG_GSTS_PASUING,		    // 已暂停
     NMG_GSTS_CAN_PLAY_NEXT,	    // 可以进行下一关
     NMG_GSTS_CLEARANCE,		    // 已通关
 } NMG_MODEL_GAME_STATUS;
